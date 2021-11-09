@@ -6,7 +6,7 @@ logger = logging.getLogger('streamsets.ci_cd_poc')
 
 
 def pytest_addoption(parser):
-    parser.addoption('--pipeline-id')
+    parser.addoption('--pipeline_id')
     parser.addoption('--upgrade-jobs', action='store_true')
 
 
@@ -36,4 +36,3 @@ def pipeline(sch, request):
                 sch.upgrade_job(*jobs_to_upgrade)
             else:
                 logger.warning('No jobs need to be upgraded')
-
