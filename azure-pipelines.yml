@@ -13,5 +13,5 @@ steps:
 - bash: |
     export PYTHONUNBUFFERED=1
     set +x
-    stf --docker-image-dont-pull test --sch-server-url 'https://trailer.streamsetscloud.com/' --sch-username 'prasanna@schops-customer-success' --sch-password "Passw0rd"  --pipeline_id "8a5a072b-a344-438d-9f65-72cc2d31ab18:schops-customer-success" --elasticsearch-url 'http://20.117.138.67:9200' --cluster-server kafka://172.28.0.4:9092 --kafka-version 2.7.0 --kafka-zookeeper 172.28.0.4:2181 -vv --upgrade-jobs --junit-xml=/root/tests/output/test-output.xml
+    stf --docker-image-dont-pull test --sch-server-url 'https://trailer.streamsetscloud.com/' --sch-username 'prasanna@schops-customer-success' --sch-password "Passw0rd"  --pipeline_id "8a5a072b-a344-438d-9f65-72cc2d31ab18:schops-customer-success" --elasticsearch-url 'http://20.117.138.67:9200' --cluster-server kafka://172.28.0.4:9092 --kafka-version 2.7.0 --kafka-zookeeper 172.28.0.4:2181 -vv --upgrade-jobs --junit-xml=/home/azureuser/tests/output/test-output.xml
   displayName: 'Run Tests on Streamsets Pipeline'
