@@ -6,6 +6,9 @@
 trigger:
 - master
 
+pool:
+  name: Default
+
 steps:
 - bash: |
     export PYTHONUNBUFFERED=1
