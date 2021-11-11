@@ -6,31 +6,13 @@
 trigger:
 - master
 
-pool:
-  vmImage: ubuntu-latest
-strategy:
-  matrix:
-    Python27:
-      python.version: '2.7'
-    Python35:
-      python.version: '3.5'
-    Python36:
-      python.version: '3.6'
-    Python37:
-      python.version: '3.7'
-
 steps:
-- task: UsePythonVersion@0
+- task: AzureCLI@2
+  displayName: Azure CLI
   inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
-
-- script: |
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-  displayName: 'Install dependencies'
-
-- script: |
-    pip install pytest pytest-azurepipelines
-    pytest
-  displayName: 'pytest'
+    azureSubscription: <Name of the Azure Resource Manager service connection>
+    scriptType: ps
+    scriptLocation: inlineScript
+    inlineScript: |
+      az --version
+      az account show
