@@ -23,7 +23,7 @@ steps:
     testRunTitle: 'Publish test results for Kafka To ElasticSearch Streamsets Pipeline'
     failTaskOnFailedTests: true
 - task: Bash@3
-  condition: succeded()
+  condition: succeeded()
   inputs:
     targetType: 'inline'
     script: echo $MYSECRET is the secret
