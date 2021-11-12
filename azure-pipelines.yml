@@ -17,7 +17,7 @@ steps:
     sudo chown -R azureuser:azureuser /home/azureuser/myagent
   displayName: 'Run Tests on Streamsets Pipeline'
 - task: PublishTestResults@2
-  condition: succeededOrFailed()
+  condition: succeeded()
   inputs:
     testResultsFiles: '**/test-*.xml'
     testRunTitle: 'Publish test results for Kafka To ElasticSearch Streamsets Pipeline'
