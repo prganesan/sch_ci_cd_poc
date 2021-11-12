@@ -36,10 +36,3 @@ steps:
     targetType: 'inline'
     noRc: false
     script: mv *.json "$(QA_PIPELINE_NAME).json"
-- task: PythonScript@0
-  condition: succeeded()
-  inputs:
-    scriptSource: filePath
-    scriptPath: import_pipeline_to_qa.py
-    pythonInterpreter: /usr/bin/python3
-    arguments: --qa_pipeline_name "$(QA_PIPELINE_NAME)" --qa_sch_url "$(QA_SCH_URL)" --qa_sch_user "$(QA_SCH_USER)" --qa_sch_password "$(QA_SCH_PASSWORD)"
