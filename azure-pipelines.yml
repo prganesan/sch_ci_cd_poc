@@ -28,7 +28,8 @@ steps:
     scriptSource: filePath
     scriptPath: export_pipeline_from_dev.py
     pythonInterpreter: /usr/bin/python3
-    arguments: --pipeline_id '$(DEV_PIPELINE_ID)' --dev_sch_url '$(DEV_SCH_URL)' --dev_sch_user '$(DEV_SCH_USER)' --dev_sch_password '$(DEV_SCH_PASSWORD)' 
+    arguments: --pipeline_id "$(DEV_PIPELINE_ID)" --dev_sch_url "$(DEV_SCH_URL)" --dev_sch_user "$(DEV_SCH_USER)" --dev_sch_password "$(DEV_SCH_PASSWORD)" 
+
 - task: Bash@3
   condition: succeeded()
   inputs:
@@ -41,4 +42,4 @@ steps:
     scriptSource: filePath
     scriptPath: import_pipeline_to_qa.py
     pythonInterpreter: /usr/bin/python3
-    arguments: --qa_pipeline_name '$(QA_PIPELINE_NAME)' --qa_sch_url '$(QA_SCH_URL)' --qa_sch_user '$(QA_SCH_USER)' --qa_sch_password '$(QA_SCH_PASSWORD)'
+    arguments: --qa_pipeline_name "$(QA_PIPELINE_NAME)" --qa_sch_url "$(QA_SCH_URL)" --qa_sch_user "$(QA_SCH_USER)" --qa_sch_password "$(QA_SCH_PASSWORD)"
