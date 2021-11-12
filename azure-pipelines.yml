@@ -37,5 +37,6 @@ steps:
     mv *.json Prasanna_Pipeline_Exports
     git add -A
     git commit -m "Azure Pipeline commit"
-    git push
+    git remote add origin https://github.com/streamsets/prasatest.git
+    git push -u origin main
   displayName: 'Checkin the pipeline json to GIT'
