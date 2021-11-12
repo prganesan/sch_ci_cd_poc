@@ -35,6 +35,7 @@ steps:
     for file in *.json; do mv "$file" `echo $file | tr ' ' '_'` ; done
     git clone git@github.com:streamsets/Prasanna_Pipeline_Exports
     mv *.json Prasanna_Pipeline_Exports
+    cd Prasanna_Pipeline_Exports
     git add -A
     git commit -m "Azure Pipeline commit"
     git push -u origin main
