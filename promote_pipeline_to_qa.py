@@ -1,5 +1,6 @@
 import sys
 import argparse
+import time
 from streamsets.sdk import ControlHub
 ControlHub.VERIFY_SSL_CERTIFICATES = False
 
@@ -19,6 +20,8 @@ args = parser.parse_args()
 dev_control_hub = ControlHub(server_url=args.dev_sch_url,username=args.dev_sch_user,password=args.dev_sch_password)
 pipeline_list = dev_control_hub.pipelines.get_all(pipeline_id=args.pipeline_id)
 pipeline_export_data = dev_control_hub.export_pipelines(pipelines=pipeline_list)
+time.sleep(5)
+pipeline_export_data
 with open ('./sch_pipeline_exports.zip', 'wb') as output_file:
     output_file.write(pipeline_export_data)
 qa_control_hub = ControlHub(server_url=args.qa_sch_url,username=args.qa_sch_user,password=args.qa_sch_password)
