@@ -23,6 +23,7 @@ steps:
     testRunTitle: 'Publish test results for Kafka To ElasticSearch Streamsets Pipeline'
     failTaskOnFailedTests: true
 - task: PythonScript@0
+  condition: succeeded()
   inputs:
     scriptSource: filePath
     scriptPath: export_pipeline_from_dev.py
