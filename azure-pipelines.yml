@@ -35,7 +35,7 @@ steps:
   inputs:
     targetType: 'inline'
     noRc: false
-    script: mv *.json $(QA_PIPELINE_NAME).json
+    script: mv *.json "$(QA_PIPELINE_NAME).json"
 - task: PythonScript@0
   condition: succeeded()
   inputs:
