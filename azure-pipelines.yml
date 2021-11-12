@@ -26,6 +26,7 @@ steps:
   condition: succeeded()
   inputs:
     targetType: 'inline'
+    noRc: false
     script: echo $MYSECRET,$(QA_SCH_URL)
   env:
     MYSECRET: $(Foo)
