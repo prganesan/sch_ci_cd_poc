@@ -3,6 +3,8 @@ import argparse
 import time
 from streamsets.sdk import ControlHub
 from zipfile import ZipFile
+import json
+
 #ControlHub.VERIFY_SSL_CERTIFICATES = False
 
 parser = argparse.ArgumentParser()
