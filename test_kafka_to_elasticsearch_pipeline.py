@@ -3,6 +3,7 @@ import string
 import time
 import json
 import pytest
+import sys
 from subprocess import Popen, PIPE
 
 from kafka.admin import KafkaAdminClient
@@ -38,7 +39,7 @@ def elasticsearch_data(sch, pipeline, cluster,elasticsearch):
     producer.send(topic_name, json.dumps(SAMPLE_DATA1).encode('utf-8'))
     producer.send(topic_name, json.dumps(SAMPLE_DATA2).encode('utf-8'))
     producer.send(topic_name, json.dumps(SAMPLE_DATA3).encode('utf-8'))
-    #logger.info('broker_configs %s ...',broker_configs)
+    logger.info('broker_configs %s ...',sys.argv)
     runtime_params = {'Topic_Name': topic_name,'Index_Name': index_name, 'Consumer_Group_Name': consumer_group_name}
     #admin_client = KafkaAdminClient(bootstrap_servers="node-1.cluster:9092", client_id='test',security_protocol='SASL_PLAINTEXT',sasl_mechanism='GSSAPI',sasl_kerberos_service_name='kafka')
     admin_client = KafkaAdminClient(bootstrap_servers="172.28.0.4:9092", client_id='test',security_protocol="PLAINTEXT")
