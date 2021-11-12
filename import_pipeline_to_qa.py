@@ -8,10 +8,6 @@ import json
 #ControlHub.VERIFY_SSL_CERTIFICATES = False
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--pipeline_id", help="Pipeline to be exported from Dev Environment")
-parser.add_argument("--dev_sch_url", help="Control Hub URL for Dev Environment")
-parser.add_argument("--dev_sch_user", help="Control Hub User for Dev Environment")
-parser.add_argument("--dev_sch_password", help="Control Hub Password for Dev Environment")
 parser.add_argument("--qa_pipeline_name", help="Pipeline Name for QA Environment")
 parser.add_argument("--qa_sch_url", help="Control Hub URL for QA Environment")
 parser.add_argument("--qa_sch_user", help="Control Hub User for QA Environment")
