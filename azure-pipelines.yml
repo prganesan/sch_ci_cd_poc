@@ -22,17 +22,23 @@ steps:
     testResultsFiles: '**/test-*.xml'
     testRunTitle: 'Publish test results for Kafka To ElasticSearch Streamsets Pipeline'
     failTaskOnFailedTests: true
+- task: PythonScript@0
+  condition: succeeded()
+  inputs:
+    scriptSource: filePath
+    scriptPath: export_pipeline_from_dev.py
+    pythonInterpreter: /usr/bin/python3
+    arguments: --pipeline_id $(DEV_PIPELINE_ID) --dev_sch_url $(DEV_SCH_URL) --dev_sch_user $(DEV_SCH_USER) --dev_sch_password $(DEV_SCH_PASSWORD) --qa_pipeline_name $(QA_PIPELINE_NAME) --qa_sch_url $(QA_SCH_URL) --qa_sch_user $(QA_SCH_USER) --qa_sch_password $(QA_SCH_PASSWORD)
 - task: Bash@3
   condition: succeeded()
   inputs:
     targetType: 'inline'
     noRc: false
-    script: echo $MYSECRET,$(QA_SCH_URL)
-  env:
-    MYSECRET: $Foo
+    script: mv *.json $(QA_PIPELINE_NAME).json
 - task: PythonScript@0
+  condition: succeeded()
   inputs:
     scriptSource: filePath
-    scriptPath: export_pipeline_from_dev.py
+    scriptPath: import_pipeline_to_qa.py
     pythonInterpreter: /usr/bin/python3
     arguments: --pipeline_id $(DEV_PIPELINE_ID) --dev_sch_url $(DEV_SCH_URL) --dev_sch_user $(DEV_SCH_USER) --dev_sch_password $(DEV_SCH_PASSWORD) --qa_pipeline_name $(QA_PIPELINE_NAME) --qa_sch_url $(QA_SCH_URL) --qa_sch_user $(QA_SCH_USER) --qa_sch_password $(QA_SCH_PASSWORD)
