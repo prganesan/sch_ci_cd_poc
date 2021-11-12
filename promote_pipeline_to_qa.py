@@ -2,7 +2,7 @@ import sys
 import argparse
 import time
 from streamsets.sdk import ControlHub
-ControlHub.VERIFY_SSL_CERTIFICATES = False
+#ControlHub.VERIFY_SSL_CERTIFICATES = False
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--pipeline_id", help="Pipeline to be exported from Dev Environment")
