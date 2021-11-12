@@ -33,6 +33,7 @@ steps:
 - task: PythonScript@0
   inputs:
     scriptSource: inline
+    pythonInterpreter: /usr/bin/python3
     script: |
       import sys
       print ('Executing script file is:', str(sys.argv[0]))
