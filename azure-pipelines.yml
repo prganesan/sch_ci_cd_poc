@@ -13,7 +13,7 @@ steps:
     export PYTHONUNBUFFERED=1
     echo $USER
     set +x
-    stf --docker-image-dont-pull test --sch-server-url 'https://trailer.streamsetscloud.com/' --sch-username 'prasanna@schops-customer-success' --sch-password "Passw0rd"  --pipeline_id "$(PIPELINE_ID)" --elasticsearch-url 'http://20.117.138.67:9200' --cluster-server kafka://172.28.0.4:9092 --kafka-version 2.7.0 --kafka-zookeeper 172.28.0.4:2181 -vv --upgrade-jobs --junit-xml=/root/tests/output/test-output.xml
+    stf --docker-image-dont-pull test --sch-server-url '$(DEV_SCH_URL)' --sch-username '$(DEV_SCH_USER)' --sch-password "$(DEV_SCH_PASSWORD)"  --pipeline_id "$(DEV_PIPELINE_ID)" --elasticsearch-url '$(DEV_ELASTICSEARCH_URL)' --cluster-server '$(DEV_KAFKA_URL)'' --kafka-version 2.7.0 --kafka-zookeeper $(DEV_ZK_URL) -vv --upgrade-jobs --junit-xml=/root/tests/output/test-output.xml
     sudo chown -R azureuser:azureuser /home/azureuser/myagent
   displayName: 'Run Tests on Streamsets Pipeline'
 - task: PublishTestResults@2
@@ -26,6 +26,6 @@ steps:
   condition: succeeded()
   inputs:
     targetType: 'inline'
-    script: echo $MYSECRET is the secret
+    script: echo $MYSECRET,$(QA_SCH_URL)
   env:
     MYSECRET: $(Foo)
