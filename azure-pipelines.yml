@@ -21,3 +21,4 @@ steps:
   inputs:
     testResultsFiles: '**/test-*.xml'
     testRunTitle: 'Publish test results for Kafka To ElasticSearch Streamsets Pipeline'
+    failTaskOnFailedTests: true
