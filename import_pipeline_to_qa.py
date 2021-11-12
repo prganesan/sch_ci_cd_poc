@@ -20,6 +20,9 @@ parser.add_argument("--qa_sch_password", help="Control Hub Password for QA Envir
 
 args = parser.parse_args()
 
+print('QA_PIPELINE_NAME='+args.qa_pipeline_name)
+print('Importing json='+args.qa_pipeline_name+'.json')
+
 
 qa_control_hub = ControlHub(server_url=args.qa_sch_url,username=args.qa_sch_user,password=args.qa_sch_password)
 exported_json = args.qa_pipeline_name + '.json'
