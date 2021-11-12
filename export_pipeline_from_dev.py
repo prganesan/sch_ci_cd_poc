@@ -28,12 +28,12 @@ with ZipFile('./sch_pipeline_exports.zip', 'r') as zipObj:
    # Extract all the contents of zip file in current directory
    zipObj.extractall()
 
-qa_control_hub = ControlHub(server_url=args.qa_sch_url,username=args.qa_sch_user,password=args.qa_sch_password)
+#qa_control_hub = ControlHub(server_url=args.qa_sch_url,username=args.qa_sch_user,password=args.qa_sch_password)
 
-with open('./*.json', 'r') as input_file:
-    pipeline_json = json.load(input_file)
+#with open('./*.json', 'r') as input_file:
+#    pipeline_json = json.load(input_file)
 
-pipeline = qa_control_hub.import_pipeline(pipeline=pipeline_json,
-                               commit_message='Promoted pipeline from Dev',
-                               name=args.qa_pipeline_name)
+#pipeline = qa_control_hub.import_pipeline(pipeline=pipeline_json,
+#                               commit_message='Promoted pipeline from Dev',
+#                               name=args.qa_pipeline_name)
 
