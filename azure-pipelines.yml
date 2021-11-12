@@ -32,15 +32,7 @@ steps:
     MYSECRET: $Foo
 - task: PythonScript@0
   inputs:
-    scriptSource: inline
+    scriptSource: filePath
+    scriptPath: promote_pipeline_to_qa.py
     pythonInterpreter: /usr/bin/python3
-    script: |
-      import sys
-      print ('Executing script file is:', str(sys.argv[0]))
-      print ('The arguments are:', str(sys.argv))
-      import argparse
-      parser = argparse.ArgumentParser()
-      parser.add_argument("--world", help="Provide the name of the world to greet.")
-      args = parser.parse_args()
-      print ('Hello ', args.world)
-    arguments: --world Venus
+    arguments: --pipeline_id $(PIPELINE_ID) --dev_sch_url $(DEV_SCH_URL) --dev_sch_user $(DEV_SCH_USER) --dev_password $(DEV_SCH_PASSWORD) --qa_pipeline_name $(QA_PIPELINE_NAME) --qa_sch_url $(QA_SCH_URL) --qa_sch_user $(QA_SCH_USER) --qa_password $(QA_SCH_PASSWORD)
