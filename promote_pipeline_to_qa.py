@@ -2,6 +2,7 @@ import sys
 import argparse
 import time
 from streamsets.sdk import ControlHub
+from zipfile import ZipFile
 #ControlHub.VERIFY_SSL_CERTIFICATES = False
 
 parser = argparse.ArgumentParser()
@@ -23,8 +24,16 @@ pipeline_export_data = dev_control_hub.export_pipelines(pipelines=pipeline_list)
 pipeline_export_data
 with open ('./sch_pipeline_exports.zip', 'wb') as output_file:
     output_file.write(pipeline_export_data)
+with ZipFile('./sch_pipeline_exports.zip', 'r') as zipObj:
+   # Extract all the contents of zip file in current directory
+   zipObj.extractall()
+
 qa_control_hub = ControlHub(server_url=args.qa_sch_url,username=args.qa_sch_user,password=args.qa_sch_password)
-with open('./sch_pipeline_exports.zip', 'rb') as input_file:
-    pipelines_zip_data = input_file.read()
-pipelines = qa_control_hub.import_pipelines_from_archive(archive=pipelines_zip_data,
-                                              commit_message='Exported as zip from sdc')
+
+with open('./exported_from_sch.json', 'r') as input_file:
+    pipeline_json = json.load(input_file)
+
+pipeline = qa_control_hub.import_pipeline(pipeline=pipeline_json,
+                               commit_message='Promoted pipeline from Dev',
+                               name=args.qa_pipeline_name)
+
