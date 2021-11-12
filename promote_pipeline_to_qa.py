@@ -22,7 +22,7 @@ pipeline_export_data = dev_control_hub.export_pipelines(pipelines=pipeline_list)
 with open ('./sch_pipeline_exports.zip', 'wb') as output_file:
     output_file.write(pipeline_export_data)
 qa_control_hub = ControlHub(server_url=args.qa_sch_url,username=args.qa_sch_user,password=args.qa_sch_password)
-with open('./sdc_exports_for_sch.zip', 'rb') as input_file:
+with open('./sch_pipeline_exports.zip', 'rb') as input_file:
     pipelines_zip_data = input_file.read()
 pipelines = qa_control_hub.import_pipelines_from_archive(archive=pipelines_zip_data,
 											  pipeline_name=args.qa_pipeline_name,
