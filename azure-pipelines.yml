@@ -29,4 +29,4 @@ steps:
     noRc: false
     script: echo $MYSECRET,$(QA_SCH_URL)
   env:
-    MYSECRET: $(Foo)
+    MYSECRET: $Foo
