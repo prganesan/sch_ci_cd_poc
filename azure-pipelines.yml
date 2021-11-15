@@ -31,7 +31,7 @@ steps:
     export PYTHONUNBUFFERED=1
     echo $USER
     set +x
-    stf --docker-image-dont-pull test --sch-server-url '$(DEV_SCH_URL)' --sch-username '$(DEV_SCH_USER)' --sch-password "$(DEV_SCH_PASSWORD)"  --pipeline_id "$(DEV_PIPELINE_ID)" --pipeline_name "Kafka To ElasticSearch" --topic_name "${QA_KAFKA_TOPIC}" --index_name "${QA_ELASTICSEARCH_INDEX}" --consumer_group_name "${QA_CONSUMER_GROUP_NAME}" --elasticsearch-url '$(DEV_ELASTICSEARCH_URL)' --cluster-server '$(DEV_KAFKA_URL)' --kafka-version 2.7.0 --kafka-zookeeper $(DEV_ZK_URL) -vv --upgrade-jobs --junit-xml=/root/tests/output/test-output.xml
+    stf --docker-image-dont-pull test --sch-server-url '$(DEV_SCH_URL)' --sch-username '$(DEV_SCH_USER)' --sch-password "$(DEV_SCH_PASSWORD)"  --pipeline_id "$(DEV_PIPELINE_ID)"  --elasticsearch-url '$(DEV_ELASTICSEARCH_URL)' --cluster-server '$(DEV_KAFKA_URL)' --kafka-version 2.7.0 --kafka-zookeeper $(DEV_ZK_URL) -vv --upgrade-jobs --junit-xml=/root/tests/output/test-output.xml
     sudo chown -R azureuser:azureuser /home/azureuser/myagent
   displayName: 'Run Tests on Streamsets Pipeline'
 
@@ -41,4 +41,12 @@ steps:
     testResultsFiles: '**/test-*.xml'
     testRunTitle: 'Publish test results for Kafka To ElasticSearch Streamsets Pipeline'
     failTaskOnFailedTests: true
+
+- task: PythonScript@0
+  condition: succeeded()
+  inputs:
+    scriptSource: filePath
+    scriptPath: promote_job_to_qa.py
+    pythonInterpreter: /usr/bin/python3
+    arguments: --pipeline_id "$(DEV_PIPELINE_ID)" --sch_url "$(DEV_SCH_URL)" --sch_user "$(DEV_SCH_USER)" --sch_password "$(DEV_SCH_PASSWORD) --pipeline_name "${DEV_PIPELINE_NAME}" --topic_name "${QA_KAFKA_TOPIC}" --index_name "${QA_ELASTICSEARCH_INDEX}" --consumer_group_name "${QA_CONSUMER_GROUP_NAME}"" 
 
