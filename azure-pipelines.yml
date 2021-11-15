@@ -48,5 +48,5 @@ steps:
     scriptSource: filePath
     scriptPath: promote_job_to_qa.py
     pythonInterpreter: /usr/bin/python3
-    arguments: --pipeline_id "$(DEV_PIPELINE_ID)" --sch_url "$(DEV_SCH_URL)" --sch_user "$(DEV_SCH_USER)" --sch_password "$(DEV_SCH_PASSWORD) --pipeline_name "${DEV_PIPELINE_NAME}" --topic_name "${QA_KAFKA_TOPIC}" --index_name "${QA_ELASTICSEARCH_INDEX}" --consumer_group_name "${QA_CONSUMER_GROUP_NAME}"" 
+    arguments: --pipeline_id "$(DEV_PIPELINE_ID)" --sch_url "$(DEV_SCH_URL)" --sch_user "$(DEV_SCH_USER)" --sch_password "$(DEV_SCH_PASSWORD)" --pipeline_name "$(DEV_PIPELINE_NAME)" --topic_name "$(QA_KAFKA_TOPIC)" --index_name "$(QA_ELASTICSEARCH_INDEX)" --consumer_group_name "$(QA_CONSUMER_GROUP_NAME)" 
 
