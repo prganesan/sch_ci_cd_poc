@@ -4,6 +4,7 @@ import time
 import json
 import pytest
 import sys
+import argparse
 from subprocess import Popen, PIPE
 
 from kafka.admin import KafkaAdminClient
@@ -11,9 +12,14 @@ from streamsets.testframework.utils import get_random_string
 from elasticsearch import Elasticsearch
 
 logger = logging.getLogger(__name__)
+parser = argparse.ArgumentParser()
+
+parser.add_argument("--cluster-server", help="Kafka Cluster Broker URL")
+parser.add_argument("--elasticsearch-url", help="ElasticSearch URL")
+
+
 #Generate a Random Topic Name and Job Name
 job_name = get_random_string(string.ascii_lowercase)
-#index_name='testempdetails1'
 index_name=job_name
 consumer_group_name=job_name
 topic_name=job_name
@@ -41,10 +47,10 @@ def elasticsearch_data(sch, pipeline, cluster,elasticsearch):
     producer.send(topic_name, json.dumps(SAMPLE_DATA3).encode('utf-8'))
     logger.info('broker_configs %s ...',sys.argv)
     runtime_params = {'Topic_Name': topic_name,'Index_Name': index_name, 'Consumer_Group_Name': consumer_group_name}
-    #admin_client = KafkaAdminClient(bootstrap_servers="node-1.cluster:9092", client_id='test',security_protocol='SASL_PLAINTEXT',sasl_mechanism='GSSAPI',sasl_kerberos_service_name='kafka')
-    admin_client = KafkaAdminClient(bootstrap_servers="172.28.0.4:9092", client_id='test',security_protocol="PLAINTEXT")
-    es1 = Elasticsearch([{"host":"172.28.0.4","port":9200}])
-
+    #admin_client = KafkaAdminClient(bootstrap_servers="172.28.0.4:9092", client_id='test',security_protocol="PLAINTEXT")
+    admin_client = KafkaAdminClient(bootstrap_servers=args.cluster-server, client_id='test',security_protocol="PLAINTEXT")
+    #es1 = Elasticsearch([{"host":"172.28.0.4","port":9200}])
+    es1 = Elasticsearch([{"host":args.elasticsearch-url,"port":9200}])
 
     try:
         mapping = '''
@@ -76,12 +82,13 @@ def elasticsearch_data(sch, pipeline, cluster,elasticsearch):
                                 pipeline=pipeline,
                                 runtime_parameters=runtime_params)
         job.description = 'CI/CD test job'
-        job.data_collector_labels = ['prasanna-azure']
+        job.data_collector_labels = ['prasanna-azure-dev']
         sch.add_job(job)
         sch.start_job(job)
         #Wait for records to be written.
         time.sleep(5)
 
+        
         data_in_elasticsearch = [hit['_source'] for hit in elasticsearch.client.search(index=index_name)]
         yield data_in_elasticsearch
     finally:
