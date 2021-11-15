@@ -43,6 +43,8 @@ def elasticsearch_data(sch, pipeline, cluster,elasticsearch):
     producer.send(topic_name, json.dumps(SAMPLE_DATA2).encode('utf-8'))
     producer.send(topic_name, json.dumps(SAMPLE_DATA3).encode('utf-8'))
     logger.info('broker_configs %s ...',sys.argv)
+    logger.info('Kafka URL %s ...',sys.argv[12])
+    logger.info('ElasticSearch URL %s ...',sys.argv[10])
     runtime_params = {'Topic_Name': topic_name,'Index_Name': index_name, 'Consumer_Group_Name': consumer_group_name}
     #admin_client = KafkaAdminClient(bootstrap_servers="172.28.0.4:9092", client_id='test',security_protocol="PLAINTEXT")
     admin_client = KafkaAdminClient(bootstrap_servers=sys.argv[12], client_id='test',security_protocol="PLAINTEXT")
