@@ -17,6 +17,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--cluster-server", help="Kafka Cluster Broker URL")
 parser.add_argument("--elasticsearch-url", help="ElasticSearch URL")
 
+args = parser.parse_args()
+
 
 #Generate a Random Topic Name and Job Name
 job_name = get_random_string(string.ascii_lowercase)
