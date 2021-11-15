@@ -14,8 +14,17 @@ from elasticsearch import Elasticsearch
 logger = logging.getLogger(__name__)
 parser = argparse.ArgumentParser()
 
+
+parser.add_argument("--sch-server-url", help="SCH URL")
+parser.add_argument("--sch-username", help="SCH Username")
+parser.add_argument("--sch-password", help="SCH Password")
+parser.add_argument("--pipeline_id", help="Pipeline Id")
+parser.add_argument("--elasticsearch-url", help="Elastic Search URL")
 parser.add_argument("--cluster-server", help="Kafka Cluster Broker URL")
-parser.add_argument("--elasticsearch-url", help="ElasticSearch URL")
+parser.add_argument("--kafka-version", help="Kafka Version")
+parser.add_argument("--kafka-zookeeper", help="Kafka Zookeeper")
+parser.add_argument("--upgrade-jobs", help="Kafka Version")
+parser.add_argument("--junit-xml", help="Junit")
 
 args = parser.parse_args()
 
