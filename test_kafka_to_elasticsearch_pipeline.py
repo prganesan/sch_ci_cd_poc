@@ -23,7 +23,7 @@ parser.add_argument("--elasticsearch-url", help="Elastic Search URL")
 parser.add_argument("--cluster-server", help="Kafka Cluster Broker URL")
 parser.add_argument("--kafka-version", help="Kafka Version")
 parser.add_argument("--kafka-zookeeper", help="Kafka Zookeeper")
-parser.add_argument("--upgrade-jobs", help="Kafka Version")
+#parser.add_argument("--upgrade-jobs", help="Kafka Version")
 #parser.add_argument("--junit-xml", help="Junit")
 
 args = parser.parse_args()
