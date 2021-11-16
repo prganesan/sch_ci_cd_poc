@@ -5,6 +5,7 @@
 
     - name: Install Stage Libs on QA Data Collectors
       shell: |
+         echo "Prasanna " {{ lookup('env', 'lib_list') }}
          /home/azureuser/streamsets-datacollector-4.0.2/bin/streamsets stagelibs -install={{ lookup('env', 'lib_list') }}
          
 
