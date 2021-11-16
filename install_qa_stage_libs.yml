@@ -1,0 +1,15 @@
+---
+  - name: Shell Examples
+    hosts: qa-data-collectors
+    tasks:
+
+    - name: Execute Multiple commands
+      shell: |
+         echo "This will go in log file"   > /tmp/log_file.txt
+         echo "This will go in memory file"> /tmp/memory_file.txt
+         echo "This will go in disk file"  > /tmp/disk_file.txt
+         echo "This will go in version file"> /tmp/version_file.txt
+      register: multiplecmd
+      tags: multiplecmd
+
+    - debug: msg="{{multiplecmd.stdout_lines}}"
