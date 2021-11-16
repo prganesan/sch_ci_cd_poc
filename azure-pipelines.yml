@@ -51,5 +51,8 @@ steps:
     arguments: --pipeline_id "$(DEV_PIPELINE_ID)" --sch_url "$(DEV_SCH_URL)" --sch_user "$(DEV_SCH_USER)" --sch_password "$(DEV_SCH_PASSWORD)" --pipeline_name "$(DEV_PIPELINE_NAME)" --topic_name "$(QA_KAFKA_TOPIC)" --index_name "$(QA_ELASTICSEARCH_INDEX)" --consumer_group_name "$(QA_CONSUMER_GROUP_NAME)" 
 
 - bash: |
-    echo "List of libraries = " $(lib_list)
+    echo "Installing Libraries = " $(LIB_LIST)
+    ansible-playbook -i inventory_file install_qa_stage_libs.yml
+  env:
+    LIB_LIST: $(lib_list)
   displayName: 'Import Libraries to QA SDC'
