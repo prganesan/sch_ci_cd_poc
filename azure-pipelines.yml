@@ -53,4 +53,4 @@ steps:
 - bash: |
     echo "Installing Libraries = " $(lib_list)
     ansible-playbook -i inventory_file --extra-vars "lib_list=$(lib_list)" install_qa_stage_libs.yml
-  displayName: 'Import Libraries to QA SDC'
+  displayName: 'Prepare QA DataCollectors'
