@@ -42,7 +42,7 @@ qa_control_hub.add_job(job)
 #qa_control_hub.start_job(job)
 
 #Compile list of required stage libraries for the pipeline
-for stage in pipeline_.stages
+for stage in pipeline_.stages:
   lib_list = lib_list + stage.library + ","
 
 lib_list = lib_list[:-1]
