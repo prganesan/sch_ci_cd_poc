@@ -5,7 +5,6 @@ from streamsets.sdk import ControlHub
 from zipfile import ZipFile
 import json
 import os
-os.environ['lib_list']
 
 #ControlHub.VERIFY_SSL_CERTIFICATES = False
 
