@@ -23,6 +23,7 @@ topic_name = args.topic_name
 index_name = args.index_name
 consumer_group_name = args.consumer_group_name
 job_name = "QA Job For " + pipeline_name
+lib_list=""
 
 runtime_params = {'Topic_Name': topic_name,'Index_Name': index_name, 'Consumer_Group_Name': consumer_group_name}
 
@@ -37,3 +38,9 @@ job = job_builder.build(job_name,
 job.data_collector_labels=['prasanna-azure-qa']
 qa_control_hub.add_job(job)
 #qa_control_hub.start_job(job)
+
+#Compile list of required stage libraries for the pipeline
+for stage in pipeline_.stages
+  lib_list = lib_list + stage.library + ","
+
+lib_list = lib_list[:-1]
