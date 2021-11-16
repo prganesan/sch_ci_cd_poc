@@ -5,7 +5,7 @@
 
     - name: Install Stage Libs on QA Data Collectors
       shell: |
-         /home/azureuser/streamsets-datacollector-4.0.2/bin/streamsets stagelibs -install=
+         /home/azureuser/streamsets-datacollector-4.0.2/bin/streamsets stagelibs -install=$(lib_list)
          
 
       register: installqastagelibs
