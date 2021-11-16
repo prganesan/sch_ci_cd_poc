@@ -36,4 +36,4 @@ job = job_builder.build(job_name,
                         runtime_parameters=runtime_params)
 job.data_collector_labels=['prasanna-azure-qa']
 qa_control_hub.add_job(job)
-qa_control_hub.start_job(job)
+#qa_control_hub.start_job(job)
