@@ -1,15 +1,14 @@
 ---
-  - name: Shell Examples
+  - name: Prepare QA Data Collectors
     hosts: qa-data-collectors
     tasks:
 
-    - name: Execute Multiple commands
+    - name: Install Stage Libs on QA Data Collectors
       shell: |
-         echo "This will go in log file"   > /tmp/log_file.txt
-         echo "This will go in memory file"> /tmp/memory_file.txt
-         echo "This will go in disk file"  > /tmp/disk_file.txt
-         echo "This will go in version file"> /tmp/version_file.txt
-      register: multiplecmd
-      tags: multiplecmd
+         /home/azureuser/streamsets-datacollector-4.0.2/bin/streamsets stagelibs -install=
+         
 
-    - debug: msg="{{multiplecmd.stdout_lines}}"
+      register: installqastagelibs
+      tags: installqastagelibs
+
+    - debug: msg="{{installqastagelibs.stdout_lines}}"
