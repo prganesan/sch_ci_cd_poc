@@ -4,6 +4,8 @@ import time
 from streamsets.sdk import ControlHub
 from zipfile import ZipFile
 import json
+import os
+os.environ['VARIABLE_NAME']
 
 #ControlHub.VERIFY_SSL_CERTIFICATES = False
 
@@ -44,3 +46,4 @@ for stage in pipeline_.stages
   lib_list = lib_list + stage.library + ","
 
 lib_list = lib_list[:-1]
+print ('##vso[task.setvariable variable=lib_list]'+lib_list)
