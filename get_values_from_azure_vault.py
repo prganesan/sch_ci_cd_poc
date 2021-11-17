@@ -15,11 +15,11 @@ qaschuser = client.get_secret('qa-sch-user')
 qaschpassword = client.get_secret('qa-sch-password')
 qaschurl = client.get_secret('qa-sch-url')
 
-print ('##vso[task.setvariable variable=DEV_SCH_USER]'+devschuser)
-print ('##vso[task.setvariable variable=DEV_SCH_PASSWORD]'+devschpassword)
-print ('##vso[task.setvariable variable=DEV_SCH_URL]'+devschurl)
+print ('##vso[task.setvariable variable=DEV_SCH_USER]'+devschuser.value)
+print ('##vso[task.setvariable variable=DEV_SCH_PASSWORD]'+devschpassword.value)
+print ('##vso[task.setvariable variable=DEV_SCH_URL]'+devschurl.value)
 
-print ('##vso[task.setvariable variable=QA_SCH_USER]'+qaschuser)
-print ('##vso[task.setvariable variable=QA_SCH_PASSWORD]'+qaschpassword)
-print ('##vso[task.setvariable variable=QA_SCH_URL]'+qaschurl)
+print ('##vso[task.setvariable variable=QA_SCH_USER]'+qaschuser.value)
+print ('##vso[task.setvariable variable=QA_SCH_PASSWORD]'+qaschpassword.value)
+print ('##vso[task.setvariable variable=QA_SCH_URL]'+qaschurl.value)
 
