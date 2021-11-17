@@ -12,6 +12,11 @@ steps:
 - task: PythonScript@0
   inputs:
     scriptSource: filePath
+    scriptPath: get_values_from_azure_vault.py
+    pythonInterpreter: /usr/bin/python3
+- task: PythonScript@0
+  inputs:
+    scriptSource: filePath
     scriptPath: export_pipeline_from_dev.py
     pythonInterpreter: /usr/bin/python3
     arguments: --pipeline_id "$(DEV_PIPELINE_ID)" --dev_sch_url "$(DEV_SCH_URL)" --dev_sch_user "$(DEV_SCH_USER)" --dev_sch_password "$(DEV_SCH_PASSWORD)" 
