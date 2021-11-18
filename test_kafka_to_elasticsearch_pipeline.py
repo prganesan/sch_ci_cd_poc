@@ -48,7 +48,7 @@ def elasticsearch_data(sch, pipeline, cluster,elasticsearch):
     #elastic_search_url = sys.argv[10]
     elastic_search_url = elasticsearch.url
 
-    kafka_host_port = cluster.kafka.brokers.split(',')[0]
+    kafka_host_port = cluster.kafka.brokers[0]
     elastic_host_port = elastic_search_url.split('//')[1]
     elastic_host = elastic_host_port.split(':')[0]
     elastic_port = elastic_host_port.split(':')[1]
