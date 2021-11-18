@@ -43,6 +43,7 @@ def elasticsearch_data(sch, pipeline, cluster,elasticsearch):
     producer.send(topic_name, json.dumps(SAMPLE_DATA2).encode('utf-8'))
     producer.send(topic_name, json.dumps(SAMPLE_DATA3).encode('utf-8'))
     logger.info('broker_configs %s ...',sys.argv)
+    logger.info('kafka_brokers %s ...',producer.brokers)
     
     kafka_cluster = sys.argv[12]
     elastic_search_url = sys.argv[10]
