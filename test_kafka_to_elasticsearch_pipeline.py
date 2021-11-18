@@ -45,7 +45,6 @@ def elasticsearch_data(sch, pipeline, cluster,elasticsearch):
     logger.info('broker_configs %s ...',sys.argv)
     logger.info('kafka_brokers %s ...',cluster.kafka.brokers)
     
-    #elastic_search_url = sys.argv[10]
     elastic_search_url = elasticsearch.url
 
     kafka_host_port = cluster.kafka.brokers[0]
@@ -55,9 +54,7 @@ def elasticsearch_data(sch, pipeline, cluster,elasticsearch):
     logger.info('Kafka URL %s ...',sys.argv[12])
     logger.info('ElasticSearch URL %s ...',sys.argv[10])
     runtime_params = {'Topic_Name': topic_name,'Index_Name': index_name, 'Consumer_Group_Name': consumer_group_name}
-    #admin_client = KafkaAdminClient(bootstrap_servers="172.28.0.4:9092", client_id='test',security_protocol="PLAINTEXT")
     admin_client = KafkaAdminClient(bootstrap_servers=kafka_host_port, client_id='test',security_protocol="PLAINTEXT")
-    #es1 = Elasticsearch([{"host":"172.28.0.4","port":9200}])
     es1 = Elasticsearch([{"host":elastic_host,"port":elastic_port}])
 
     try:
