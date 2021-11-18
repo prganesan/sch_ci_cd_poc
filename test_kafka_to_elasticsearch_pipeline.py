@@ -45,10 +45,10 @@ def elasticsearch_data(sch, pipeline, cluster,elasticsearch):
     logger.info('broker_configs %s ...',sys.argv)
     logger.info('kafka_brokers %s ...',cluster.kafka.brokers)
     
-    kafka_cluster = sys.argv[12]
-    elastic_search_url = sys.argv[10]
+    #elastic_search_url = sys.argv[10]
+    elastic_search_url = elasticsearch.url
 
-    kafka_host_port = kafka_cluster.split('//')[1]
+    kafka_host_port = cluster.kafka.brokers.split(',')[0]
     elastic_host_port = elastic_search_url.split('//')[1]
     elastic_host = elastic_host_port.split(':')[0]
     elastic_port = elastic_host_port.split(':')[1]
