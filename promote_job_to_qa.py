@@ -32,20 +32,22 @@ qa_control_hub = ControlHub(server_url=args.sch_url,username=args.sch_user,passw
 
 pipeline_ = qa_control_hub.pipelines.get(pipeline_id=pipeline_id)
 
-job_builder = qa_control_hub.get_job_builder()
-job = job_builder.build(job_name,
-                        pipeline=pipeline_,
-                        runtime_parameters=runtime_params)
-job.data_collector_labels=['prasanna-azure-qa']
+
 
 jobs_to_upgrade = [job for job in qa_control_hub.jobs.get_all(pipeline_id=pipeline_id)
                                if (job.pipeline_commit_label != f'v{pipeline_.version}' and job.data_collector_labels == ['prasanna-azure-qa'] )]
 if jobs_to_upgrade:
    logger.info('Upgrading QA jobs: %s ...', ', '.join(str(job) for job in jobs_to_upgrade))
    qa_control_hub.upgrade_job(*jobs_to_upgrade)
-else
+else:
+    logger.info('Creating Job in QA environment')
+    job_builder = qa_control_hub.get_job_builder()
+    job = job_builder.build(job_name,
+                        pipeline=pipeline_,
+                        runtime_parameters=runtime_params)
+    job.data_collector_labels=['prasanna-azure-qa']
         
-qa_control_hub.add_job(job)
+    qa_control_hub.add_job(job)
 #qa_control_hub.start_job(job)
 
 #Compile list of required stage libraries for the pipeline
