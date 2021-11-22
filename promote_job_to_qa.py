@@ -8,6 +8,9 @@ import os
 
 #ControlHub.VERIFY_SSL_CERTIFICATES = False
 
+logger = logging.getLogger(__name__)
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--pipeline_id", help="Pipeline ID for QA Environment")
 parser.add_argument("--pipeline_name", help="Pipeline Name for QA Environment")
