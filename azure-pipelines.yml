@@ -19,7 +19,7 @@ steps:
     scriptSource: filePath
     scriptPath: export_pipeline_from_dev.py
     pythonInterpreter: /usr/bin/python3
-    arguments: --pipeline_id "$(DEV_PIPELINE_ID)" --dev_sch_url "$(DEV_SCH_URL)" --dev_sch_user "$(DEV_SCH_USER)" --dev_sch_password "P@ssw0rd" 
+    arguments: --pipeline_id "$(DEV_PIPELINE_ID)" --dev_sch_url "$(DEV_SCH_URL)" --dev_sch_user "$(DEV_SCH_USER)" --dev_sch_password "$(DEV_SCH_PASSWORD)" 
   displayName: 'Export current version of pipeline from Dev'
 - bash: |
     for file in *.json; do mv "$file" `echo $file | tr ' ' '_'` ; done
