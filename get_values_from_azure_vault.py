@@ -9,7 +9,7 @@ credential = DefaultAzureCredential()
 client = SecretClient(vault_url=KVUri, credential=credential)
 
 devschuser = client.get_secret('dev-sch-user')
-devschpassword = client.get_secret('dev-sch-password')
+devschpassword = client.get_secret('dev-sch-password1')
 devschurl = client.get_secret('dev-sch-url')
 qaschuser = client.get_secret('qa-sch-user')
 qaschpassword = client.get_secret('qa-sch-password')
