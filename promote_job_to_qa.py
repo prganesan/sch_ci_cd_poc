@@ -58,8 +58,8 @@ else:
 #qa_control_hub.start_job(job)
 
 #Compile list of required stage libraries for the pipeline
-for stage in pipeline_.stages:
-  lib_list = lib_list + stage.library + ","
+#for stage in pipeline_.stages:
+#  lib_list = lib_list + stage.library + ","
 
-lib_list = lib_list[:-1]
-print ('##vso[task.setvariable variable=lib_list]'+lib_list)
+#lib_list = lib_list[:-1]
+#print ('##vso[task.setvariable variable=lib_list]'+lib_list)
