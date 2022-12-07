@@ -32,6 +32,7 @@ steps:
   displayName: 'Checkin the pipeline json to GIT'
 - bash: |
     export PYTHONUNBUFFERED=1
+    export DEV_PIPELINE_NAME=test1
     echo $USER
     set +x
     stf --docker-image-dont-pull test test_${DEV_PIPELINE_NAME}.py --sch-server-url '$(DEV_SCH_URL)' --sch-username '$(DEV_SCH_USER)' --sch-password "$(DEV_SCH_PASSWORD)"  --pipeline_id "$(DEV_PIPELINE_ID)"  --elasticsearch-url '$(DEV_ELASTICSEARCH_URL)' --cluster-server '$(DEV_KAFKA_URL)' --kafka-version 2.7.0 --kafka-zookeeper $(DEV_ZK_URL) -vv --upgrade-jobs --junit-xml=/root/tests/output/test-output.xml
