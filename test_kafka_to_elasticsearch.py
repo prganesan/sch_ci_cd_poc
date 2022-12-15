@@ -87,7 +87,7 @@ def elasticsearch_data(sch, pipeline, cluster,elasticsearch):
                                 pipeline=pipeline,
                                 runtime_parameters=runtime_params)
         job.description = 'CI/CD test job'
-        job.data_collector_labels = ['adda-dev']
+        job.data_collector_labels = ['prasanna_adda_dev']
         sch.add_job(job)
         sch.start_job(job)
         #Wait for records to be written.
