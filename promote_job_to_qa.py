@@ -41,7 +41,7 @@ pipeline_ = qa_control_hub.pipelines.get(pipeline_id=pipeline_id)
 #jobs_to_upgrade = [job for job in qa_control_hub.jobs.get_all(pipeline_id=pipeline_id)
 #                               if (job.pipeline_commit_label != f'v{pipeline_.version}' and job.data_collector_labels == ['prasanna-azure-qa'] )]
 jobs_to_upgrade = [job for job in qa_control_hub.jobs.get_all(pipeline_id=pipeline_id)
-                               if (job.data_collector_labels == ['prasanna_adda_dev'] )]
+                               if (job.data_collector_labels == ['prasanna_qa_dev'] )]
 
 if jobs_to_upgrade:
    logger.info('Upgrading QA jobs: %s ...', ', '.join(str(job) for job in jobs_to_upgrade))
@@ -52,7 +52,7 @@ else:
     job = job_builder.build(job_name,
                         pipeline=pipeline_,
                         runtime_parameters=runtime_params)
-    job.data_collector_labels=['prasanna_adda_dev']
+    job.data_collector_labels=['prasanna_qa_dev']
         
     qa_control_hub.add_job(job)
 #qa_control_hub.start_job(job)
